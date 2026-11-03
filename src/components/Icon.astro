@@ -1,0 +1,15 @@
+---
+interface Props {
+  name: 'arrow' | 'phone' | 'pin' | 'plus' | 'clock';
+  size?: number;
+}
+const { name, size = 20 } = Astro.props;
+const paths = {
+  arrow: 'M5 12h14M13 6l6 6-6 6',
+  phone: 'M7.1 3H4.8A1.8 1.8 0 0 0 3 4.9 17.2 17.2 0 0 0 19.1 21a1.8 1.8 0 0 0 1.9-1.8v-2.3a1 1 0 0 0-.8-1l-3.2-.7a1 1 0 0 0-1 .4l-1.4 1.8a14 14 0 0 1-8-8L8.4 8a1 1 0 0 0 .4-1l-.7-3.2a1 1 0 0 0-1-.8Z',
+  pin: 'M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0ZM15 10a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z',
+  plus: 'M12 5v14M5 12h14',
+  clock: 'M12 8v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z',
+};
+---
+<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d={paths[name]} /></svg>

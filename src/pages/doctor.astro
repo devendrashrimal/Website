@@ -1,0 +1,28 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import ConsultationCTA from '../components/ConsultationCTA.astro';
+import { practice } from '../data/practice';
+const doctorName = practice.preferredName.value!;
+const qualifications = practice.qualifications.value!;
+---
+<SiteLayout title={doctorName} description={`Meet ${doctorName}, ${practice.designation.value} at ${practice.currentAffiliation.value}. Qualifications and clinical background.`}>
+ <section class="page-intro"><div class="container"><a class="breadcrumb" href="/">Home</a><h1>Meet your cardiologist.</h1><p>Professional background, qualifications and clinical practice.</p></div></section>
+    <section class="about-section" id="about" aria-labelledby="about-title">
+      <div class="container about-inner">
+        <div class="about-intro" data-reveal>
+          <figure class="clinical-photo">
+            <picture>
+              <source type="image/avif" srcset="/images/clinical-clear-480.avif 480w, /images/clinical-clear-768.avif 768w, /images/clinical-clear-979.avif 979w" sizes="(max-width: 767px) 90vw, (max-width: 1280px) 44vw, 558px" />
+              <source type="image/webp" srcset="/images/clinical-clear-480.webp 480w, /images/clinical-clear-768.webp 768w, /images/clinical-clear-979.webp 979w" sizes="(max-width: 767px) 90vw, (max-width: 1280px) 44vw, 558px" />
+              <img src="/images/clinical-clear-979.jpg" width="979" height="652" loading="lazy" decoding="async" alt="Dr. Devendra Kumar Shrimal working with his clinical team in an operating room" />
+            </picture>
+            <figcaption>Dr. Shrimal in clinical practice</figcaption>
+          </figure>
+        </div>
+        <div class="about-copy" data-reveal="sequence"><h2 id="about-title">{doctorName}</h2><p>{doctorName} is {practice.hospital.role} at {practice.hospital.name}.</p><ul class="qualifications" aria-label="Qualifications">{qualifications.map(qualification => <li>{qualification}</li>)}</ul><a class="text-link text-link-light" href={practice.hospital.profileUrl} target="_blank" rel="noopener noreferrer">View the hospital profile<span class="sr-only"> (opens in a new tab)</span></a><p class="hospital-note">For residence clinic hours and contact details, <a class="inline-link" href="/visit/">plan your visit</a>. Please contact {practice.hospital.name} separately for hospital appointments.</p></div>
+      </div>
+    </section>
+
+
+ <ConsultationCTA />
+</SiteLayout>

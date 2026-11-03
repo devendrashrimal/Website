@@ -1,0 +1,28 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import VisitFAQs from '../components/VisitFAQs.astro';
+import ClinicMap from '../components/ClinicMap.astro';
+import { practice, contact } from '../data/practice';
+const consultation = practice.consultation;
+---
+<SiteLayout title={practice.preferredName.value!} description="Call to arrange a residence clinic consultation. Confirmed contact numbers, consultation hours, address, directions and clinic map.">
+ <section class="page-intro"><div class="container"><a class="breadcrumb" href="/">Home</a><h1>Plan your visit</h1><p>Call the clinic to confirm your visit before coming. Find contact details, consultation hours and directions below.</p><a class="button button-primary" href={contact.primaryHref}>Call clinic</a></div></section>
+    <section class="visit-section section-space container" id="visit" aria-labelledby="visit-title">
+      <div class="visit-heading" data-reveal><h2 id="visit-title">The residence clinic.</h2><p class="visit-description">{practice.booking.advisory}</p></div>
+      <div class="visit-content">
+        <div class="location-details" data-reveal="sequence">
+          <span class="small-label">{consultation.name}</span>
+          <address>{consultation.addressLines.map(line => <span>{line}</span>)}</address>
+          <a class="text-link" href={consultation.mapsUrl} target="_blank" rel="noopener noreferrer">Get directions on Google Maps<span class="sr-only"> (opens in a new tab)</span></a>
+          <div class="phone-details"><span class="small-label">Call to confirm your visit</span><a href={contact.primaryHref}>{contact.primaryLabel}</a><a href={contact.secondaryHref}>{contact.secondaryLabel}</a></div>
+          <p class="location-footnote">These consultations take place at the doctor’s residence.<br />For hospital appointments, contact {practice.hospital.name} separately.</p>
+        </div>
+        <div class="hours-panel" data-reveal><div class="hours-title"><h3>Consultation hours</h3></div><dl class="hours-list">{consultation.hoursSummary.map(slot => <div><dt>{slot.days}</dt><dd class:list={{ 'hours-closed': slot.hours === 'Closed' }}>{slot.hours}</dd></div>)}</dl><p class="hours-timezone">{consultation.timezoneLabel} Please call ahead.</p><div class="representatives"><span class="small-label">For medical representatives</span><p>{consultation.representativesNote}</p></div></div>
+      </div>
+    </section>
+
+
+ <ClinicMap />
+ <VisitFAQs />
+
+</SiteLayout>

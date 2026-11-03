@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.astro/
+.venv/
+.DS_Store
+.env
+.env.*
+!.env.example
+*.sql
+*.sql.gz
+*.tar.gz
+*.zip
+wp-config.php
+*login*.txt
+*password*.json
+*.log

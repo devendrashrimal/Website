@@ -1,0 +1,6 @@
+---
+import { practice, contact } from '../data/practice';
+const doctorName = practice.preferredName.value!;
+const consultation = practice.consultation;
+---
+<footer class="site-footer"><div class="container footer-main"><div><a class="footer-brand" href="/">{doctorName}</a><p class="footer-role">Cardiologist in Jaipur</p></div><nav class="footer-nav" aria-label="Footer navigation"><a href="/doctor/">The doctor</a><a href="/heart-care/">Heart care</a><a href="/visit/">Plan your visit</a></nav><div class="footer-location"><p>{consultation.name}</p><address>{consultation.addressLines.map(line => <span>{line}</span>)}</address><a href={contact.primaryHref}>{contact.primaryLabel}</a><a href={consultation.mapsUrl} target="_blank" rel="noopener noreferrer">Find us on Maps<span class="sr-only"> (opens in a new tab)</span></a></div></div><div class="container footer-bottom"><p>© {new Date().getFullYear()} {doctorName}</p><a href="#top">Back to top</a></div></footer>

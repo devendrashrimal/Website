@@ -1,0 +1,29 @@
+:root {
+  color-scheme: light;
+  --color-paper: #f8f7f3;
+  --color-white: #fffefa;
+  --color-ink: #142d45;
+  --color-muted: #536778;
+  --color-accent: #245b8d;
+  --color-accent-deep: #19476e;
+  --color-accent-ink: #fcfdff;
+  --color-sky: #e7eef4;
+  --color-sky-deep: #d6e3ee;
+  --color-line: #d5dfe5;
+  --color-hero: #183750;
+  --color-hero-copy: #d3e0e9;
+  --color-dark-line: #486175;
+  --color-salmon: #c18370;
+  --color-focus: #aa563f;
+  --color-focus-dark: #f0ba9e;
+  --color-photo: #edf2f5;
+  --font-display: 'Newsreader', Georgia, serif;
+  --font-body: 'Manrope', Arial, sans-serif;
+  --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px;
+  --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 96px;
+  --container: 1200px;
+  --column-gap: 64px;
+  --radius-control: 4px;
+  --ease-out: cubic-bezier(.2,.7,.2,1);
+  --duration-short: 180ms;
+}

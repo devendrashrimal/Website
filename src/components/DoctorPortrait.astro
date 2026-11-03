@@ -1,0 +1,14 @@
+---
+import { practice } from '../data/practice';
+const qualifications = practice.qualifications.value!;
+---
+      <figure class="hero-portrait">
+        <div class="portrait-frame">
+          <picture>
+            <source type="image/avif" srcset="/images/doctor-selected-320.avif 320w, /images/doctor-selected-480.avif 480w, /images/doctor-selected-640.avif 640w, /images/doctor-selected-810.avif 810w" sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 900px) 42vw, 400px" />
+            <source type="image/webp" srcset="/images/doctor-selected-320.webp 320w, /images/doctor-selected-480.webp 480w, /images/doctor-selected-640.webp 640w, /images/doctor-selected-810.webp 810w" sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 900px) 42vw, 400px" />
+            <img src="/images/doctor-selected-810.jpg" width="810" height="944" alt="Dr. Devendra Kumar Shrimal wearing a white coat" fetchpriority="high" decoding="async" />
+          </picture>
+        </div>
+        <figcaption>{qualifications.join(', ')}</figcaption>
+      </figure>

@@ -1,0 +1,12 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import ConsultationCTA from '../components/ConsultationCTA.astro';
+import { practice, careAreas } from '../data/practice';
+---
+<SiteLayout title={practice.preferredName.value!} description="Explore cardiology consultations, coronary and interventional care, heart rhythm and device care, and heart failure care.">
+ <section class="page-intro"><div class="container"><a class="breadcrumb" href="/">Home</a><h1>Heart care</h1><p>Explore the areas of cardiology you can discuss during your consultation.</p></div></section>
+ <section class="care-catalog section-space container" aria-label="Areas of heart care">
+  {careAreas.map(area => <article class="care-item" data-reveal><div><h2>{area.title}</h2><p>{area.description}</p></div></article>)}
+ </section>
+ <ConsultationCTA />
+</SiteLayout>

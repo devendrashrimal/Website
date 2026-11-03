@@ -1,0 +1,4 @@
+---
+import { questions } from '../data/practice';
+---
+<section class="faq-section" id="questions" aria-labelledby="faq-title"><div class="container faq-inner"><h2 id="faq-title">Before you visit</h2><div class="faq-list" data-reveal="sequence">{questions.map(question => <details><summary>{question.question}<span class="faq-symbol" aria-hidden="true">+</span></summary><p>{question.answer}</p></details>)}</div></div></section>

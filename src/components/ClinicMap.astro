@@ -1,0 +1,78 @@
+---
+import 'leaflet/dist/leaflet.css';
+import { practice } from '../data/practice';
+const consultation = practice.consultation;
+---
+<section class="map-section container" id="map" aria-labelledby="map-title">
+  <div class="map-address"><h2 id="map-title">Find the residence clinic.</h2><address>{consultation.addressLines.map(line => <span>{line}</span>)}</address><a class="text-link" href={consultation.mapsUrl} target="_blank" rel="noopener noreferrer">Get directions on Google Maps<span class="sr-only"> (opens in a new tab)</span></a><p class="map-note">This map is for the residence clinic. Please contact the hospital separately for hospital appointments.</p></div>
+  <div class="map-content"><div class="map-frame"><div id="clinic-map" class="clinic-map" role="region" aria-label="Interactive map of the residence clinic" data-lat={consultation.coordinates.latitude} data-lng={consultation.coordinates.longitude} data-clinic={practice.preferredName.value} data-address={consultation.addressLines.join(', ')}><div class="map-placeholder"><p>Residence clinic, Jaipur</p><p>Use Google Maps directions to view the clinic location.</p></div></div></div><p class="map-status" role="status" aria-live="polite">For directions, open the clinic location in Google Maps.</p><noscript><p class="map-note">Use the directions link to view the clinic location on Maps.</p></noscript></div>
+</section>
+<p class="map-status">The map uses OpenStreetMap. Loading it shares your IP address and browser request information with the map provider.</p>
+<script>
+  import L from 'leaflet';
+  import markerUrl from 'leaflet/dist/images/marker-icon.png?url';
+  import markerRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png?url';
+  import markerShadowUrl from 'leaflet/dist/images/marker-shadow.png?url';
+  const target = document.querySelector<HTMLElement>('#clinic-map');
+  const status = document.querySelector<HTMLElement>('.map-status');
+  if (target) {
+    const startMap = () => {
+      let loadingTimer: number | undefined;
+      try {
+        const location: L.LatLngTuple = [Number(target.dataset.lat), Number(target.dataset.lng)];
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        target.querySelector('.map-placeholder')?.remove();
+        if (status) status.textContent = 'Loading the clinic map…';
+        const map = L.map(target, { scrollWheelZoom: false, zoomAnimation: !reduced, fadeAnimation: !reduced, markerZoomAnimation: !reduced }).setView(location, 16);
+        const tileStates = new Map<string, 'loaded' | 'failed'>();
+        const tileKey = (event: L.TileEvent) => `${event.coords.z}/${event.coords.x}/${event.coords.y}`;
+        const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' });
+        tiles.on('loading', () => {
+          target.dataset.mapReady = 'false';
+          window.clearTimeout(loadingTimer);
+          if (status) status.textContent = 'Loading the clinic map…';
+          loadingTimer = window.setTimeout(() => {
+            if (status) status.textContent = 'The map is taking longer to load. Use Google Maps directions to find the clinic.';
+          }, 9000);
+        });
+        tiles.on('tileload', (event: L.TileEvent) => { tileStates.set(tileKey(event), 'loaded'); });
+        tiles.on('tileerror', (event: L.TileEvent) => { tileStates.set(tileKey(event), 'failed'); });
+        tiles.on('tileunload', (event: L.TileEvent) => { tileStates.delete(tileKey(event)); });
+        tiles.on('load', () => {
+          window.clearTimeout(loadingTimer);
+          const states = [...tileStates.values()];
+          const loadedTiles = states.filter(state => state === 'loaded').length;
+          const failedTiles = states.filter(state => state === 'failed').length;
+          const complete = loadedTiles > 0 && failedTiles === 0;
+          target.dataset.mapReady = String(complete);
+          if (status) {
+            status.textContent = complete
+              ? 'Clinic location shown. Use the map controls to zoom.'
+              : loadedTiles > 0
+                ? 'Some map tiles could not load. Use Google Maps directions for the clinic location.'
+                : 'Map tiles could not load. Use Google Maps directions to find the clinic.';
+          }
+        });
+        tiles.addTo(map);
+        const icon = L.icon({ iconUrl: markerUrl, iconRetinaUrl: markerRetinaUrl, shadowUrl: markerShadowUrl, iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41] });
+        const label = document.createElement('div');
+        const name = document.createElement('strong');
+        name.textContent = target.dataset.clinic || 'Residence clinic';
+        const address = document.createElement('p');
+        address.textContent = target.dataset.address || '';
+        label.append(name, address);
+        L.marker(location, { icon, alt: 'Residence clinic location', title: 'Residence clinic' }).addTo(map).bindPopup(label);
+      } catch {
+        window.clearTimeout(loadingTimer);
+        target.dataset.mapReady = 'false';
+        if (status) status.textContent = 'The map is unavailable. Use Google Maps directions to find the clinic.';
+      }
+    };
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        if (entries.some(entry => entry.isIntersecting)) { observer.disconnect(); startMap(); }
+      }, { rootMargin: '200px' });
+      observer.observe(target);
+    } else startMap();
+  }
+</script>

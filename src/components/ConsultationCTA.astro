@@ -1,0 +1,6 @@
+---
+import { contact } from '../data/practice';
+interface Props { directCall?: boolean; }
+const { directCall = false } = Astro.props;
+---
+<div class="closing-section container"><p>Call ahead to confirm consultation timing.</p><a class="text-link" href={directCall ? contact.primaryHref : '/visit/'}>{directCall ? `Call ${contact.primaryLabel}` : 'Plan your visit'}</a></div>
