@@ -2,11 +2,12 @@
 import SiteLayout from '../layouts/SiteLayout.astro';
 import VisitFAQs from '../components/VisitFAQs.astro';
 import ClinicMap from '../components/ClinicMap.astro';
+import VisitPreparation from '../components/VisitPreparation.astro';
 import { practice, contact } from '../data/practice';
 const consultation = practice.consultation;
 ---
 <SiteLayout title={practice.preferredName.value!} description="Call to arrange a residence clinic consultation. Confirmed contact numbers, consultation hours, address, directions and clinic map.">
- <section class="page-intro"><div class="container"><a class="breadcrumb" href="/">Home</a><h1>Plan your visit</h1><p>Call the clinic to confirm your visit before coming. Find contact details, consultation hours and directions below.</p><a class="button button-primary" href={contact.primaryHref}>Call clinic</a></div></section>
+ <section class="page-intro"><div class="container" data-reveal><a class="breadcrumb" href="/">Home</a><h1>Plan your visit</h1><p>Call the clinic to confirm your visit before coming. Find contact details, consultation hours and directions below.</p><a class="button button-primary" href={contact.primaryHref}>Call clinic</a></div></section>
     <section class="visit-section section-space container" id="visit" aria-labelledby="visit-title">
       <div class="visit-heading" data-reveal><h2 id="visit-title">The residence clinic.</h2><p class="visit-description">{practice.booking.advisory}</p></div>
       <div class="visit-content">
@@ -23,6 +24,7 @@ const consultation = practice.consultation;
 
 
  <ClinicMap />
+ <VisitPreparation />
  <VisitFAQs />
 
 </SiteLayout>

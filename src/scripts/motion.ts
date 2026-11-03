@@ -2,7 +2,7 @@
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const running = new Set<Animation>();
 const targets = [...document.querySelectorAll<HTMLElement>('[data-reveal]')];
-const animate = (element: Element, delay = 0, distance = 18, duration = 620) => {
+const animate = (element: Element, delay = 0, distance = 10, duration = 460) => {
   if (reduceMotion.matches || !element.animate) return;
   const animation = element.animate([
     { opacity: .72, transform: `translateY(${distance}px)` },
@@ -14,7 +14,7 @@ const animate = (element: Element, delay = 0, distance = 18, duration = 620) => 
 const enter = (element: HTMLElement) => {
   element.dataset.motionState = 'entered';
   if (element.dataset.reveal === 'sequence') {
-    [...element.children].forEach((child, index) => animate(child, Math.min(index * 65, 195), 14, 560));
+    [...element.children].forEach((child, index) => animate(child, Math.min(index * 45, 135), 8, 420));
   } else animate(element);
 };
 const observer = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {

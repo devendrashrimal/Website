@@ -96,5 +96,7 @@ export const questions = [
   { question: 'How do I arrange a consultation?', answer: 'Call either of the listed contact numbers before visiting. Confirm the consultation timing and ask any questions about arranging your visit.' },
   { question: 'Can I visit without calling first?', answer: 'Please call ahead. On-call duties may affect availability, so a quick confirmation can help you avoid an unnecessary journey.' },
   { question: 'Are these timings for Narayana Hospital?', answer: practice.hospital.scheduleNote },
+  { question: 'Can I book an appointment on this website?', answer: 'Appointments are currently arranged by phone. Please call the clinic to confirm a suitable time; viewing the schedule on this website does not reserve an appointment.' },
+  { question: 'How can I check fees or other visit arrangements?', answer: 'Please ask the clinic when you call. The team can confirm the current arrangements before you travel.' },
   { question: 'When can medical representatives visit?', answer: 'Medical representatives are received on Wednesday and Thursday only. This is separate from the patient consultation schedule.' },
 ];

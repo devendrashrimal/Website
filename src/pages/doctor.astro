@@ -6,14 +6,14 @@ const doctorName = practice.preferredName.value!;
 const qualifications = practice.qualifications.value!;
 ---
 <SiteLayout title={doctorName} description={`Meet ${doctorName}, ${practice.designation.value} at ${practice.currentAffiliation.value}. Qualifications and clinical background.`}>
- <section class="page-intro"><div class="container"><a class="breadcrumb" href="/">Home</a><h1>Meet your cardiologist.</h1><p>Professional background, qualifications and clinical practice.</p></div></section>
+ <section class="page-intro"><div class="container" data-reveal><a class="breadcrumb" href="/">Home</a><h1>Meet your cardiologist.</h1><p>Professional background, qualifications and clinical practice.</p></div></section>
     <section class="about-section" id="about" aria-labelledby="about-title">
       <div class="container about-inner">
         <div class="about-intro" data-reveal>
           <figure class="clinical-photo">
             <picture>
-              <source type="image/avif" srcset="/images/clinical-clear-480.avif 480w, /images/clinical-clear-768.avif 768w, /images/clinical-clear-979.avif 979w" sizes="(max-width: 767px) 90vw, (max-width: 1280px) 44vw, 558px" />
-              <source type="image/webp" srcset="/images/clinical-clear-480.webp 480w, /images/clinical-clear-768.webp 768w, /images/clinical-clear-979.webp 979w" sizes="(max-width: 767px) 90vw, (max-width: 1280px) 44vw, 558px" />
+              <source type="image/avif" srcset="/images/clinical-clear-480.avif 480w, /images/clinical-clear-768.avif 768w, /images/clinical-clear-979.avif 979w" sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1050px) calc(100vw - 48px), (max-width: 1280px) 52vw, 608px" />
+              <source type="image/webp" srcset="/images/clinical-clear-480.webp 480w, /images/clinical-clear-768.webp 768w, /images/clinical-clear-979.webp 979w" sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1050px) calc(100vw - 48px), (max-width: 1280px) 52vw, 608px" />
               <img src="/images/clinical-clear-979.jpg" width="979" height="652" loading="lazy" decoding="async" alt="Dr. Devendra Kumar Shrimal working with his clinical team in an operating room" />
             </picture>
             <figcaption>Dr. Shrimal in clinical practice</figcaption>
@@ -24,5 +24,7 @@ const qualifications = practice.qualifications.value!;
     </section>
 
 
+ <section class="qualification-section section-space" aria-labelledby="qualifications-title"><div class="container qualification-grid"><div data-reveal><h2 id="qualifications-title">Medical training</h2><p class="patient-note">The qualifications listed here provide a brief introduction to Dr. Shrimal’s professional background. His hospital profile offers further information.</p></div><dl class="qualification-list" data-reveal="sequence"><div><dt>MBBS</dt><dd>Bachelor of Medicine and Bachelor of Surgery</dd></div><div><dt>MD (General Medicine)</dt><dd>Postgraduate training in general medicine</dd></div><div><dt>DM (Cardiology)</dt><dd>Specialist training in cardiology</dd></div></dl></div></section>
+ <div class="container section-space" data-reveal><div class="guide-heading"><h2>Two settings.<br />One clear place to start.</h2><div class="section-copy"><p>Residence clinic consultations and hospital appointments have separate arrangements. Choose the right location before planning your journey.</p><p class="patient-note">This website lists the residence clinic’s contact details and hours. For appointments at {practice.hospital.name}, please contact the hospital directly.</p><a class="text-link" href="/visit/">View residence clinic details</a></div></div></div>
  <ConsultationCTA />
 </SiteLayout>

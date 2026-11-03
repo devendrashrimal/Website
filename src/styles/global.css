@@ -8,7 +8,7 @@ h1 { font-size: clamp(48px, 5.2vw, 72px); }
 h2 { font-size: clamp(34px, 3.8vw, 50px); line-height: 1.1; }
 h3 { font: 500 26px/1.2 var(--font-display); letter-spacing: -.02em; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-.skip-link { position: fixed; top: 8px; left: 20px; z-index: 100; background: var(--color-ink); color: var(--color-white); padding: 12px 20px; transform: translateY(-160%); }
+.skip-link { position: fixed; top: 8px; left: 20px; z-index: 100; background: var(--color-ink); color: var(--color-paper); padding: 12px 20px; transform: translateY(-160%); }
 .skip-link:focus { transform: translateY(0); }
 a:hover { color: var(--color-accent); }
 a:active { color: var(--color-accent-deep); }
@@ -28,16 +28,16 @@ a:active { color: var(--color-accent-deep); }
 .main-navigation > a[aria-current='page'] { font-weight: 600; }
 .main-navigation > a[aria-current='page']::after, .main-navigation > a:not(.header-call):hover::after, .main-navigation > a:not(.header-call):focus-visible::after { transform: scaleX(1); }
 .menu-toggle { display: none; }
-.hero { background: var(--color-hero); color: var(--color-white); }
+.hero { background: var(--color-hero); color: var(--color-inverse); }
 .hero :focus-visible { outline-color: var(--color-focus-dark); }
 .hero-inner { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: var(--column-gap); padding-block: 48px; align-items: center; }
 .hero h1 { max-width: 650px; font-size: clamp(50px, 5.8vw, 78px); letter-spacing: -.035em; line-height: 1.04; }
 .hero-role { margin-top: 24px; font-size: 16px; line-height: 1.65; color: var(--color-hero-copy); }
 .hero-intro { margin-top: 20px; max-width: 440px; font-size: 17px; }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; margin-top: 28px; }
-.hero-actions .button { background: var(--color-white); color: var(--color-ink); }
-.hero-actions .button:hover, .hero-actions .button:active { background: var(--color-sky); }
-.hero-actions .text-link:hover { color: var(--color-hero-copy); }
+.hero-actions .button { background: var(--color-hero-button); color: var(--color-on-light); }
+.hero-actions .button:hover, .hero-actions .button:active { background: var(--color-hero-button-hover); color: var(--color-on-light); }
+.hero-actions .text-link:hover, .hero-actions .text-link:active { color: var(--color-hero-copy); }
 .call-first { margin-top: 24px; max-width: 450px; font-size: 14px; color: var(--color-hero-copy); }
 .hero-portrait { width: min(100%, 400px); justify-self: end; }
 .portrait-frame { aspect-ratio: 810 / 935; border-radius: 3px; overflow: hidden; }
@@ -130,7 +130,7 @@ address > span { display: block; }
 .faq-list details[open] summary { color: var(--color-accent); }
 .faq-list summary:hover { color: var(--color-accent); }
 .faq-list details > p { padding-bottom: 24px; font-size: 15px; color: var(--color-muted); }
-.site-footer { background: var(--color-ink); color: var(--color-white); }
+.site-footer { background: var(--color-footer); color: var(--color-inverse); }
 .site-footer :focus-visible { outline-color: var(--color-focus-dark); }
 .site-footer a:hover, .site-footer a:active { color: var(--color-hero-copy); }
 .footer-main { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .6fr) minmax(0, 1fr); gap: 48px; padding-block: 56px; }
@@ -166,7 +166,7 @@ address > span { display: block; }
  .overview-inner > .text-link { grid-column: 1 / -1; justify-self: start; }
  .hours-panel { padding: 24px; }
 }
-@media (max-width: 900px) {
+@media (max-width: 1050px) {
  :root { --column-gap: 32px; }
  .container { width: calc(100% - 48px); }
  .section-space { padding-block: 64px; }
@@ -249,3 +249,79 @@ address > span { display: block; }
  .hours-list > div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
 }
 @media (prefers-reduced-motion: reduce) { .hero-copy { animation: none !important; } }
+
+/* 4 November: shared rhythm and theme-aware controls. */
+.section-space { padding-block: var(--section-space); }
+h1, h2 { letter-spacing: -.025em; }
+.button, .header-call { min-height: 48px; padding-inline: 24px; border-radius: 6px; }
+.button:focus-visible, .header-call:focus-visible { outline-offset: 4px; }
+.header-inner { column-gap: 20px; }
+.header-controls { display: flex; align-items: center; gap: 12px; order: 3; }
+.main-navigation { margin-left: auto; gap: 20px; }
+.theme-toggle { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-width: 44px; min-height: 44px; padding: 10px; border: 1px solid var(--color-line); border-radius: 6px; background: var(--color-white); color: var(--color-ink); }
+.theme-toggle:hover { background: var(--color-sky); border-color: var(--color-muted); }
+.theme-toggle:active { background: var(--color-sky-deep); }
+.theme-toggle svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.theme-sun { display: none; }
+[data-theme='dark'] .theme-moon { display: none; }
+[data-theme='dark'] .theme-sun { display: block; }
+.overview-hours-note { margin-top: 8px; color: var(--color-muted); font-size: 13px; }
+.hero-portrait { max-width: 400px; }
+.care-item { padding-top: 24px; border-top: 1px solid var(--color-line); }
+.care-item p { max-width: 48ch; }
+.patient-guide { border-top: 1px solid var(--color-line); }
+.guide-heading { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--column-gap); align-items: start; }
+.guide-heading > p { color: var(--color-muted); max-width: 52ch; }
+.preparation-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin-top: 40px; }
+.preparation-list li { border-top: 1px solid var(--color-line); padding-top: 24px; }
+.preparation-list h3 { font-size: 27px; }
+.preparation-list p { margin-top: 12px; color: var(--color-muted); font-size: 15px; }
+.qualification-section { background: var(--color-white); border-top: 1px solid var(--color-line); }
+.qualification-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--column-gap); }
+.qualification-list > div { border-top: 1px solid var(--color-line); padding-block: 18px; }
+.qualification-list dt { font-weight: 600; }
+.qualification-list dd { color: var(--color-muted); margin-top: 4px; }
+.patient-note { margin-top: 32px; max-width: 65ch; color: var(--color-muted); font-size: 14px; }
+.map-content > .map-note { font-size: 12px; margin-top: 8px; }
+.clinic-map .leaflet-popup-content-wrapper, .clinic-map .leaflet-popup-tip,
+.clinic-map .leaflet-bar a { background: var(--color-map-paper); color: var(--color-map-ink); }
+.clinic-map .leaflet-control-attribution { color: var(--color-map-ink); }
+.clinic-map .leaflet-control-attribution a { color: var(--color-map-ink); text-decoration: underline; }
+@media (prefers-reduced-motion: no-preference) {
+ .theme-toggle { transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out); }
+}
+@media (max-width: 1200px) and (min-width: 1051px) {
+ .brand-text { font-size: 21px; max-width: 240px; }
+ .brand-heart { width: 44px; height: 44px; }
+ .main-navigation { gap: 14px; font-size: 13px; }
+ .header-inner { gap: 14px; }
+ .header-call { padding-inline: 16px; }
+}
+@media (max-width: 1050px) {
+ .header-controls { order: 0; margin-left: auto; gap: 12px; }
+ .brand { max-width: calc(100% - 148px); }
+ .main-navigation { order: 4; margin-left: 0; }
+ .menu-toggle:not([hidden]) { margin-left: 0; }
+}
+@media (max-width: 700px) {
+ .preparation-list { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+ .guide-heading, .qualification-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+}
+@media (max-width: 600px) {
+ .header-inner { gap: 12px; }
+ .header-controls { gap: 6px; }
+ .brand { max-width: calc(100% - 128px); gap: 8px; }
+ .brand-heart { width: 32px; height: 40px; }
+ .brand-text { font-size: 18px; }
+ .brand-text > span { font-size: 11px; }
+ .menu-toggle:not([hidden]) { min-width: 64px; padding-left: 4px; }
+ .theme-toggle { padding: 10px; }
+ .hero-actions { gap: 12px 24px; }
+ .hero-actions .button { flex-grow: 0; }
+ .hours-list > div { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+ .preparation-list { margin-top: 28px; }
+}
+@media (max-width: 359px) {
+ .brand-heart { display: none; }
+ .brand-text { font-size: 18px; }
+}

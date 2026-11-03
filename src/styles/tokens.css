@@ -14,9 +14,17 @@
   --color-hero-copy: #d3e0e9;
   --color-dark-line: #486175;
   --color-salmon: #c18370;
-  --color-focus: #aa563f;
+  --color-focus: #92503b;
   --color-focus-dark: #f0ba9e;
   --color-photo: #edf2f5;
+  --color-inverse: #fffefa;
+  --color-footer: #142d45;
+  --color-on-light: #142d45;
+  --color-hero-button: #fffefa;
+  --color-hero-button-hover: #e7eef4;
+  --color-map-paper: #fffefa;
+  --color-map-ink: #142d45;
+  --section-space: clamp(56px, 6vw, 88px);
   --font-display: 'Newsreader', Georgia, serif;
   --font-body: 'Manrope', Arial, sans-serif;
   --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px;
@@ -26,4 +34,36 @@
   --radius-control: 4px;
   --ease-out: cubic-bezier(.2,.7,.2,1);
   --duration-short: 180ms;
+}
+
+/* Dark surfaces retain blue rather than flattening into pure black. */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-paper: #111f2b;
+  --color-white: #172a39;
+  --color-ink: #eef3f6;
+  --color-muted: #b1c2d0;
+  --color-accent: #a9d0ee;
+  --color-accent-deep: #c3e0f5;
+  --color-accent-ink: #132d43;
+  --color-sky: #1c3142;
+  --color-sky-deep: #304d64;
+  --color-line: #3b5264;
+  --color-hero: #132e43;
+  --color-hero-copy: #c5d7e4;
+  --color-dark-line: #405a6f;
+  --color-focus: #f0ba9e;
+  --color-footer: #0b1a26;
+  --color-photo: #243c50;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --color-paper: #111f2b; --color-white: #172a39; --color-ink: #eef3f6;
+    --color-muted: #b1c2d0; --color-accent: #a9d0ee; --color-accent-deep: #c3e0f5;
+    --color-accent-ink: #132d43; --color-sky: #1c3142; --color-sky-deep: #304d64;
+    --color-line: #3b5264; --color-hero: #132e43; --color-hero-copy: #c5d7e4;
+    --color-dark-line: #405a6f; --color-focus: #f0ba9e; --color-footer: #0b1a26;
+    --color-photo: #243c50;
+  }
 }
