@@ -16,7 +16,7 @@ const navItems = [
       <a href="/" class="brand" aria-label={`${doctorName} - home`}>
         <img class="brand-heart" src="/images/heart-logo.webp" width="56" height="56" alt="" /><span class="brand-text">{doctorName}<span>Cardiologist in Jaipur</span></span>
       </a>
-      <div class="header-controls"><button class="theme-toggle" type="button" aria-label="Use dark theme" aria-pressed="false" hidden><svg class="theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 0 1 9.9 3.5 8.5 8.5 0 1 0 20.5 14.1Z" /></svg><svg class="theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg></button><button class="menu-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" hidden><span class="menu-label">Menu</span><span class="menu-lines" aria-hidden="true"></span></button></div>
+      <div class="header-controls"><button class="menu-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" hidden><span class="menu-label">Menu</span><span class="menu-lines" aria-hidden="true"></span></button></div>
       <nav id="main-navigation" class="main-navigation" aria-label="Main navigation">
         {navItems.map(item => <a href={item.href} aria-current={pathname === item.href ? 'page' : undefined}>{item.label}</a>)}
         <a class="header-call" href={contact.primaryHref}><span>Call clinic</span></a>
@@ -26,7 +26,6 @@ const navItems = [
 
 
 <script>
-    import '../scripts/theme';
     const menuButton = document.querySelector<HTMLButtonElement>('.menu-toggle');
     const navigation = document.querySelector<HTMLElement>('#main-navigation');
     if (menuButton && navigation) {

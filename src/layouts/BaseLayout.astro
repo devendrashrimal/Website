@@ -16,16 +16,6 @@ const { title, description } = Astro.props;
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
     <link rel="icon" type="image/webp" href="/images/heart-logo.webp" />
     <meta name="theme-color" content="#f8f7f3" />
-    <meta name="color-scheme" content="light dark" />
-    <script is:inline>
-      (() => {
-        try {
-          const saved = localStorage.getItem('clinic-theme');
-          if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
-          else document.documentElement.dataset.theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        } catch { document.documentElement.dataset.theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
-      })();
-    </script>
     <title>{title}</title>
   </head>
   <body id="top">

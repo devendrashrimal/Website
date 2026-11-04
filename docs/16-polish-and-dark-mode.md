@@ -1,3 +1,5 @@
+> Historical record: dark mode and its toggle were removed in the subsequent update.
+
 # Website polish and dark mode - 4 November 2026
 
 ## Scope
