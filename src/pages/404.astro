@@ -1,6 +1,7 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import { contact } from '../data/practice';
 ---
-<SiteLayout title="Dr. Devendra Kumar Shrimal" description="This page could not be found. Return to the doctor's website or find consultation details.">
-  <section class="page-intro"><div class="container"><h1>Page not found.</h1><p>Find information about the doctor or plan your visit.</p><a class="button" href="/">Return home</a></div></section>
+<SiteLayout title="Dr. Devendra Kumar Shrimal" description="This page could not be found. Return to the doctor's website or call the clinic.">
+  <section class="page-intro"><div class="container"><h1>We couldn't find this page.</h1><p>The link may have changed or the address may have been mistyped. You can return to the homepage or call the clinic for consultation information.</p><div class="error-actions"><a class="button" href="/">Return home</a><a class="text-link" href={contact.primaryHref}>Call {contact.primaryLabel}</a></div></div></section>
 </SiteLayout>

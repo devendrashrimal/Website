@@ -314,3 +314,6 @@ h1, h2 { letter-spacing: -.025em; }
  .brand-heart { display: none; }
  .brand-text { font-size: 18px; }
 }
+
+.error-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 24px; }
+.page-intro .error-actions .button { margin-top: 0; }
