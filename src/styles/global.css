@@ -317,3 +317,17 @@ h1, h2 { letter-spacing: -.025em; }
 
 .error-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 24px; }
 .page-intro .error-actions .button { margin-top: 0; }
+
+/* Missing page: short, restrained heartbeat; artwork stays still afterwards. */
+.error-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .7fr); align-items: center; gap: var(--column-gap); min-height: 450px; }
+.error-code { font-size: 15px !important; font-weight: 600; color: var(--color-accent) !important; margin: 0 0 20px !important; }
+.error-art { justify-self: center; width: min(100%, 310px); }
+.error-art img { width: 100%; height: auto; }
+@media (prefers-reduced-motion: no-preference) {
+ .error-art img { animation: heart-welcome 2.4s var(--ease-out) 2; transform-origin: center; }
+ @keyframes heart-welcome { 0%, 35%, 100% { transform: scale(1); } 10% { transform: scale(1.035); } 20% { transform: scale(1.01); } 26% { transform: scale(1.025); } }
+}
+@media (max-width: 700px) {
+ .error-layout { grid-template-columns: minmax(0, 1fr); gap: 36px; min-height: 0; }
+ .error-art { width: min(65%, 260px); }
+}
